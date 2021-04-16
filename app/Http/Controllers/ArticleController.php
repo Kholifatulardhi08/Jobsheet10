@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Route;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class ArticleController extends Controller
 {
@@ -12,7 +15,8 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+     public function index()
     {
         $articles = Article::all();
         return view('articles.index', ['articles' => $articles]);
@@ -55,9 +59,9 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show()
     {
-        //
+        
     }
 
     /**
@@ -106,5 +110,13 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         //
+    }
+
+    public function cetak_pdf(){
+        $articles = Article::all();
+
+        $pdf = PDF::loadView('articles.articles_pdf',['articles'=>$articles]);
+
+        return $pdf->stream();
     }
 }
