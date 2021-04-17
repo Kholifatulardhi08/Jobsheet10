@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\MahasiswaController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,3 +19,4 @@ use Illuminate\Support\Facades\Auth;
 
 Route::resource('articles', ArticleController::class);
 Route::get('/article/cetak_pdf',[ArticleController::class,'cetak_pdf'])->name('cetak_pdf');
+Route::resource('mahasiswa', MahasiswaController::class);
